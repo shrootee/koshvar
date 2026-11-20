@@ -32,9 +32,8 @@ export const HennaImage = ({
             loading={priority ? 'eager' : 'lazy'}
             onLoad={() => setIsLoaded(true)}
             onError={() => setHasError(true)}
-            className={`w-full h-full object-cover transition-all duration-700 ${
-              isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-            } ${imgClassName}`}
+            className={`w-full h-full object-cover transition-all duration-700 ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+              } ${imgClassName}`}
           />
         </>
       ) : (
@@ -44,7 +43,7 @@ export const HennaImage = ({
             <Sparkles size={22} strokeWidth={1.5} />
           </div>
           <p className="font-serif text-lg font-medium text-forest">
-            Mitti & Ritu Henna Studio
+            Koshvar Studio
           </p>
           <p className="text-xs text-charcoal-muted mt-1">
             Fresh Natural Henna Cones

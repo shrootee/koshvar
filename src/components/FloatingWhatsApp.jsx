@@ -6,7 +6,7 @@ export const FloatingWhatsApp = () => {
   const [showTooltip, setShowTooltip] = useState(true);
 
   const defaultMsg = encodeURIComponent(
-    `Hello Mitti & Ritu, I would like to enquire about your fresh henna cone packs and availability.`
+    `Hi KOSHVAR! I'd like to make an enquiry. Could you please share more details?`
   );
 
   return (
