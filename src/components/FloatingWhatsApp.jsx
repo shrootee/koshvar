@@ -5,9 +5,7 @@ import { BRAND } from '../config/brand';
 export const FloatingWhatsApp = () => {
   const [showTooltip, setShowTooltip] = useState(true);
 
-  const defaultMsg = encodeURIComponent(
-    `Hi KOSHVAR! I'd like to make an enquiry. Could you please share more details?`
-  );
+  const defaultMsg = encodeURIComponent(BRAND.contact.defaultEnquiryMessage);
 
   return (
     <div className="fixed bottom-6 right-6 z-40 flex items-end gap-3 pointer-events-auto">
@@ -15,7 +13,7 @@ export const FloatingWhatsApp = () => {
       {showTooltip && (
         <div className="hidden sm:flex items-center gap-2 bg-white text-charcoal border border-sand shadow-card px-4 py-2.5 rounded-full text-xs animate-in fade-in slide-in-from-bottom-2 duration-300">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Chat with us on WhatsApp for orders & quotes</span>
+          <span>Chat with KOSHVAR on WhatsApp for orders & quotes</span>
           <button
             type="button"
             onClick={() => setShowTooltip(false)}

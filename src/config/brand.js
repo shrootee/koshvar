@@ -10,7 +10,6 @@
  * 
  * Brand Operations: Pune, Maharashtra, India
  * Manufacturing & Dispatch: Basmath, Maharashtra, India
- * (No detailed street address displayed as per brand policy)
  */
 
 export const BRAND = {
@@ -34,7 +33,8 @@ export const BRAND = {
     email: "contact.koshvar@gmail.com",
     instagram: "https://www.instagram.com/koshvar.co/",
     instagramHandle: "@koshvar.co",
-    workingHours: "Monday to Saturday, 10:00 AM – 7:00 PM IST"
+    workingHours: "Monday to Saturday, 10:00 AM – 7:00 PM IST",
+    defaultEnquiryMessage: "Hi KOSHVAR! I'd like to make an enquiry. Could you please share more details?"
   },
 
   currency: {
@@ -42,7 +42,7 @@ export const BRAND = {
     code: "INR"
   },
 
-  // Genuine Quality Truths (No invented claims, awards, or lab certificates)
+  // Genuine Quality Truths
   qualityPillars: [
     {
       title: "7-Times-Filtered Henna Powder",
@@ -53,112 +53,200 @@ export const BRAND = {
       description: "Zero chemical accelerators, zero synthetic preservatives, and zero artificial dyes added to the paste or nozzle tip. Safe for artists and clients."
     },
     {
-      title: "Hand-Rolled 20g Cones",
-      description: "Each fresh cone contains exactly 20 grams of paste, hand-rolled in durable cellophane for steady thumb pressure and clean linework."
+      title: "Carefully Rolled Cones",
+      description: "Hand-rolled in durable cellophane for steady thumb pressure, ergonomic grip, and clean linework."
     },
     {
       title: "Dispatched from Basmath",
-      description: "Cones are rolled at our Basmath manufacturing unit and dispatched directly from Basmath to preserve freshness during transit."
+      description: "Cones and supplies are packed at our Basmath manufacturing unit and dispatched directly from Basmath to preserve freshness during transit."
     }
   ],
 
-  // Retail Henna Cone Packs (Each cone weighs 20g; Product price and shipping displayed separately)
-  conePacks: [
+  // All 10 Retail Products with Real Project Photography
+  retailProducts: [
     {
       id: "pack-6",
-      name: "Pack of 6 Henna Cones",
-      coneCount: 6,
-      coneWeight: "20g per cone",
-      totalWeight: "120g total",
-      productPrice: 120, // 6 × ₹20
-      formattedProductPrice: "₹120",
-      pricePerCone: "₹20 / cone",
-      shippingFee: 80,
-      formattedShipping: "₹80",
-      hasFixedShipping: true,
-      idealFor: "Practice, personal testing, and small occasions",
-      description: "Set of 6 fresh henna cones (20g each). Made with 7-times-filtered henna powder and hand-rolled cellophane tips.",
-      image: "https://images.unsplash.com/photo-1708963738411-74ab1cd5eafb?auto=format&fit=crop&w=800&q=80"
+      name: "Mehndi Cones – Pack of 6",
+      category: "Mehndi Cones",
+      price: 120,
+      formattedPrice: "₹120",
+      deliveryFee: 80,
+      formattedDelivery: "₹80 delivery",
+      deliveryNote: "₹80 delivery",
+      isCone: true,
+      popular: false,
+      badge: "Starter Pack",
+      image: "/assets/pack-6.png",
+      description: "Fresh natural henna cones hand-rolled with fine tips. 7-times-filtered powder for smooth, unbroken flow."
     },
     {
       id: "pack-12",
-      name: "Pack of 12 Henna Cones",
-      coneCount: 12,
-      coneWeight: "20g per cone",
-      totalWeight: "240g total",
-      productPrice: 240, // 12 × ₹20
-      formattedProductPrice: "₹240",
-      pricePerCone: "₹20 / cone",
-      shippingFee: 80,
-      formattedShipping: "₹80",
-      hasFixedShipping: true,
+      name: "Mehndi Cones – Pack of 12",
+      category: "Mehndi Cones",
+      price: 120,
+      formattedPrice: "₹120",
+      deliveryFee: 80,
+      formattedDelivery: "₹80 delivery",
+      deliveryNote: "₹80 delivery",
+      isCone: true,
       popular: true,
-      idealFor: "Working mehndi artists, intimate bridal sittings, and festive bookings",
-      description: "Our most requested pack. 12 fresh henna cones (20g each) formulated for consistent, non-stop linework and intricate detailing.",
-      image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80"
+      badge: "Most Popular",
+      image: "/assets/pack-12.png",
+      description: "Our most popular pack for working mehndi artists and festive sittings. Reliable fine tips without clogging."
     },
     {
       id: "pack-15",
-      name: "Pack of 15 Henna Cones",
-      coneCount: 15,
-      coneWeight: "20g per cone",
-      totalWeight: "300g total",
-      productPrice: 300, // 15 × ₹20
-      formattedProductPrice: "₹300",
-      pricePerCone: "₹20 / cone",
-      shippingFee: null, // User to confirm shipping fee
-      formattedShipping: "To be confirmed on inquiry",
-      hasFixedShipping: false,
+      name: "Mehndi Cones – Pack of 15",
+      category: "Mehndi Cones",
+      price: 300,
+      formattedPrice: "₹300",
+      deliveryFee: 80,
+      formattedDelivery: "₹80 delivery",
+      deliveryNote: "₹80 delivery",
+      isCone: true,
+      popular: false,
       badge: "Studio Value",
-      idealFor: "Bridal studios, high-volume wedding marathon appointments, and group sessions",
-      description: "15 fresh henna cones (20g each). Packed with thermal insulation to retain moisture and freshness.",
-      image: "https://images.unsplash.com/photo-1732118400647-a81e3b37be87?auto=format&fit=crop&w=800&q=80"
+      image: "/assets/pack-15.png",
+      description: "Value pack for bridal bookings and busy marathon sessions. Sealed carefully for maximum freshness."
+    },
+    {
+      id: "combo-kit",
+      name: "Mehndi Combo Kit",
+      category: "Kits & Supplies",
+      price: 500,
+      formattedPrice: "₹500",
+      deliveryFee: null,
+      formattedDelivery: "Delivery charges applicable",
+      deliveryNote: "Delivery calculated on location",
+      isCone: false,
+      popular: true,
+      badge: "Complete Set",
+      image: "/assets/combo-kit.png",
+      description: "Comprehensive artist kit with essential supplies for practicing, mixing, and creating fine mehndi art."
+    },
+    {
+      id: "cone-sheets-1kg",
+      name: "Cone Sheets – 1 kg",
+      category: "Kits & Supplies",
+      price: 600,
+      formattedPrice: "₹600",
+      deliveryFee: null,
+      formattedDelivery: "Delivery charges applicable",
+      deliveryNote: "Delivery calculated on location",
+      isCone: false,
+      popular: false,
+      badge: "1 kg Pack",
+      image: "/assets/sheets.png",
+      description: "Premium moisture-barrier cellophane sheets cut to precision size for rolling custom fine-tip henna cones."
+    },
+    {
+      id: "acrylic-hand",
+      name: "Acrylic Hand",
+      category: "Tools & Stands",
+      price: 220,
+      formattedPrice: "₹220",
+      deliveryFee: null,
+      formattedDelivery: "Delivery charges applicable",
+      deliveryNote: "Delivery calculated on location",
+      isCone: false,
+      popular: false,
+      badge: "Reusable",
+      image: "/assets/acrylic-hand.png",
+      description: "Durable clear acrylic practice hand template for perfecting bridal figures, mandalas, and intricate grids."
+    },
+    {
+      id: "cone-holder-stand",
+      name: "Cone Holder Stand",
+      category: "Tools & Stands",
+      price: 220,
+      formattedPrice: "₹220",
+      deliveryFee: null,
+      formattedDelivery: "Delivery charges applicable",
+      deliveryNote: "Delivery calculated on location",
+      isCone: false,
+      popular: false,
+      badge: "Studio Tool",
+      image: "/assets/cone-stand.png",
+      description: "Convenient cone organizer stand to hold multiple active henna cones upright without tipping or paste mess."
+    },
+    {
+      id: "mehndi-oil",
+      name: "Mehndi Oil – 250 ml",
+      category: "Oils & Care",
+      price: 250,
+      formattedPrice: "₹250",
+      deliveryFee: null,
+      formattedDelivery: "Delivery charges applicable",
+      deliveryNote: "Delivery calculated on location",
+      isCone: false,
+      popular: false,
+      badge: "250 ml",
+      image: "/assets/mehndi-oil.png",
+      description: "Natural herbal oil blend formulated to enrich paste aroma and support rich, long-lasting natural stain darkening."
+    },
+    {
+      id: "spatula",
+      name: "Mehndi Spatula",
+      category: "Tools & Stands",
+      price: 100,
+      formattedPrice: "₹100",
+      deliveryFee: null,
+      formattedDelivery: "Delivery charges applicable",
+      deliveryNote: "Delivery calculated on location",
+      isCone: false,
+      popular: false,
+      badge: "Essential",
+      image: "/assets/spatula.png",
+      description: "Ergonomic mixing and cone filling spatula for smooth paste transfer into piping bags without air pockets."
+    },
+    {
+      id: "stocking",
+      name: "Stocking",
+      category: "Kits & Supplies",
+      price: 40,
+      formattedPrice: "₹40",
+      deliveryFee: null,
+      formattedDelivery: "Delivery charges applicable",
+      deliveryNote: "Delivery calculated on location",
+      isCone: false,
+      popular: false,
+      badge: "Filtration",
+      image: "/assets/stocking.png",
+      description: "Ultra-fine mesh stocking filter for straining henna paste to guarantee lump-free, silky consistency."
     }
   ],
 
-  // Other Retail Products & Supplies (Awaiting user's reference screenshots & exact prices)
-  otherProducts: [
-    {
-      id: "henna-powder",
-      category: "Henna Powder",
-      name: "7-Times-Filtered Natural Henna Powder",
-      description: "Triple-sifted and 7-times filtered botanical henna leaf powder for artists mixing their own fresh paste.",
-      priceStatus: "Price on WhatsApp Enquiry",
-      price: null,
-      unit: "Pack size on inquiry",
-      image: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=80"
+  // Real Project Photography Assets
+  images: {
+    hero: {
+      url: "/assets/hero-mehndi.jpg",
+      alt: "KOSHVAR Natural Henna Mehndi Application"
     },
-    {
-      id: "practice-sheets",
-      category: "Henna Practice Sheets",
-      name: "Reusable Acrylic Mehndi Practice Sheets",
-      description: "Durable clear acrylic practice boards with hand outlines for practicing linework, grid netting, and mandalas.",
-      priceStatus: "Price on WhatsApp Enquiry",
-      price: null,
-      unit: "Per sheet / set",
-      image: "https://images.unsplash.com/photo-1732118400647-a81e3b37be87?auto=format&fit=crop&w=800&q=80"
+    brideMehndi: {
+      url: "/assets/bride-mehndi.jpg",
+      alt: "Intricate bridal mehndi design on hands"
     },
-    {
-      id: "cellophane-rolls",
-      category: "Empty Cones & Cellophane",
-      name: "Pre-Cut Cellophane Sheets & Pre-Rolled Cones",
-      description: "Premium moisture-barrier cellophane precuts and empty cones for artists rolling their own custom tip widths.",
-      priceStatus: "Price on WhatsApp Enquiry",
-      price: null,
-      unit: "Bundle on inquiry",
-      image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80"
+    afterColour: {
+      url: "/assets/after-colour-stain.jpg",
+      alt: "Rich deep natural henna stain result"
     },
-    {
-      id: "henna-aftercare",
-      category: "Beauty Supplies",
-      name: "Natural Henna Aftercare Balm & Sealant",
-      description: "Natural herbal balm formulated to nourish the skin, protect the drying crust, and encourage natural stain darkening.",
-      priceStatus: "Price on WhatsApp Enquiry",
-      price: null,
-      unit: "Per bottle / tin",
-      image: "https://images.unsplash.com/photo-1683912832326-fdc7912cf195?auto=format&fit=crop&w=800&q=80"
+    stain: {
+      url: "/assets/stain-of-mehndi.jpg",
+      alt: "Dark natural henna stain on palms"
+    },
+    coneReal: {
+      url: "/assets/cone-real.png",
+      alt: "KOSHVAR natural hand-rolled henna cones"
+    },
+    coneProcess: {
+      url: "/assets/cone-process.png",
+      alt: "Henna cone hand-rolling craft process"
+    },
+    conesReady: {
+      url: "/assets/cones-ready.png",
+      alt: "Freshly prepared KOSHVAR henna cones ready for dispatch"
     }
-  ],
+  },
 
   // Wholesale Information
   wholesale: {
@@ -168,19 +256,19 @@ export const BRAND = {
     products: [
       {
         name: "Fresh Henna Cones",
-        detail: "Bulk quantities of 20g fine-tip cones prepared fresh for wedding seasons."
+        detail: "Bulk quantities of fine-tip cones prepared fresh for wedding seasons."
       },
       {
         name: "7-Times-Filtered Henna Powder",
         detail: "Finely sifted natural henna powder for studio and salon mixing."
       },
       {
-        name: "Henna Practice Sheets",
-        detail: "Reusable acrylic templates and sheets for academy students and trainees."
+        name: "Cone Sheets & Cellophane",
+        detail: "Bulk 1 kg packs and custom precuts for artist rolling."
       },
       {
-        name: "Henna Supplies & Accessories",
-        detail: "Pre-cut cellophane, empty cones, and artist supplies."
+        name: "Henna Tools & Supplies",
+        detail: "Acrylic practice hands, cone stands, spatulas, and oils."
       }
     ],
     audiences: [
@@ -191,25 +279,5 @@ export const BRAND = {
       "Resellers & Distributors"
     ],
     pricingNotice: "We do not publish fixed wholesale price lists or arbitrary discount tiers online. Wholesale pricing, batch scheduling, and order quantities are provided upon direct discussion based on your studio's recurring requirements."
-  },
-
-  // Imagery
-  images: {
-    hero: {
-      url: "https://images.unsplash.com/photo-1708963738411-74ab1cd5eafb?auto=format&fit=crop&w=1200&q=80",
-      alt: "Professional mehndi artist applying fine-tip henna to bride's hand"
-    },
-    bridalHands: {
-      url: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1000&q=80",
-      alt: "Intricate bridal mehndi artwork on hands"
-    },
-    finePattern: {
-      url: "https://images.unsplash.com/photo-1732118400647-a81e3b37be87?auto=format&fit=crop&w=1000&q=80",
-      alt: "Detailed natural henna design on palm"
-    },
-    weddingMehndi: {
-      url: "https://images.unsplash.com/photo-1683912832326-fdc7912cf195?auto=format&fit=crop&w=1000&q=80",
-      alt: "Traditional Indian bride hands decorated with henna and bangles"
-    }
   }
 };

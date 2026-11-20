@@ -81,7 +81,7 @@ export const Contact = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* WhatsApp */}
           <a
-            href={`https://wa.me/${BRAND.contact.whatsappNumber}?text=${encodeURIComponent(`Hello ${BRAND.name}, I would like to get in touch with your studio.`)}`}
+            href={`https://wa.me/${BRAND.contact.whatsappNumber}?text=${encodeURIComponent(BRAND.contact.defaultEnquiryMessage)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white p-7 rounded-3xl border border-sand shadow-soft hover:shadow-card transition-all flex flex-col justify-between group"

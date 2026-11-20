@@ -5,7 +5,7 @@ import { BRAND } from '../config/brand';
 
 export const Footer = () => {
   const whatsappUrl = `https://wa.me/${BRAND.contact.whatsappNumber}?text=${encodeURIComponent(
-    `Hello ${BRAND.name}, I would like to enquire about your henna cone packs and beauty supplies.`
+    BRAND.contact.defaultEnquiryMessage
   )}`;
 
   return (

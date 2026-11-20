@@ -1,224 +1,244 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   MessageCircle,
-  Snowflake,
+  Truck,
   ArrowRight,
   ShieldCheck,
-  Check,
   Sparkles,
-  Info,
-  PackageCheck
+  Snowflake,
+  Filter
 } from 'lucide-react';
 import { BRAND } from '../config/brand';
 import { HennaImage } from '../components/HennaImage';
 
 export const Shop = () => {
-  const getWhatsAppOrderUrl = (pack) => {
-    const shippingText = pack.hasFixedShipping
-      ? `+ ₹${pack.shippingFee} shipping`
-      : `shipping to be confirmed`;
-    const text = encodeURIComponent(
-      `Hello ${BRAND.name}, I would like to order the ${pack.name} (${pack.formattedProductPrice}, ${shippingText}). Please confirm availability and dispatch details.`
-    );
-    return `https://wa.me/${BRAND.contact.whatsappNumber}?text=${text}`;
-  };
+  const [activeCategory, setActiveCategory] = useState('All');
 
-  const getOtherProductWhatsAppUrl = (product) => {
+  const categories = [
+    'All',
+    'Mehndi Cones',
+    'Tools & Stands',
+    'Kits & Supplies',
+    'Oils & Care'
+  ];
+
+  const filteredProducts = activeCategory === 'All'
+    ? BRAND.retailProducts
+    : BRAND.retailProducts.filter((p) => p.category === activeCategory);
+
+  const getProductWhatsAppUrl = (product) => {
+    const deliveryText = product.isCone
+      ? `Delivery: ₹${product.deliveryFee}`
+      : `Delivery: location-based`;
     const text = encodeURIComponent(
-      `Hello ${BRAND.name}, I would like to enquire about the price and availability of "${product.name}" (${product.category}).`
+      `Hi KOSHVAR! I'd like to make an enquiry about ${product.name} (${product.formattedPrice}, ${deliveryText}). Could you please share more details?`
     );
     return `https://wa.me/${BRAND.contact.whatsappNumber}?text=${text}`;
   };
 
   return (
-    <div className="min-h-screen py-12 lg:py-16 bg-ivory">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Header */}
+    <div className="min-h-screen py-10 lg:py-16 bg-ivory">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+        {/* Page Header */}
         <div className="max-w-3xl mx-auto text-center space-y-4">
           <span className="text-xs uppercase tracking-widest text-henna font-bold">
-            Retail Catalogue
+            Retail Collection
           </span>
           <h1 className="font-serif text-4xl sm:text-5xl font-bold text-forest">
-            {BRAND.name} Retail Products & Supplies
+            KOSHVAR Retail Products & Supplies
           </h1>
           <p className="text-base text-charcoal-light leading-relaxed">
-            Fresh henna cones made with <strong>7-times-filtered henna powder</strong> and <strong>no added chemicals in the cone tip</strong>. Product price and courier shipping are listed separately for complete transparency.
+            Authentic natural henna cones, tools, practice boards, and artist supplies. Freshly formulated with 7-times-filtered powder and dispatched directly from Basmath.
           </p>
 
           <div className="inline-flex items-center gap-2 p-2 px-4 rounded-full bg-sage-50 text-forest text-xs font-medium border border-sage-200">
             <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <span>Tap "Enquire / Order on WhatsApp" on any product to chat directly</span>
+            <span>Delivery: ₹80 on all mehndi cones · Delivery charges applicable on other supplies</span>
           </div>
         </div>
 
-        {/* SECTION 1: FRESH HENNA CONE PACKS */}
-        <div className="space-y-6">
-          <div className="border-b border-sand pb-4">
-            <h2 className="font-serif text-3xl font-bold text-forest">
-              Fresh 20g Henna Cones
-            </h2>
-            <p className="text-xs sm:text-sm text-charcoal-muted mt-1">
-              Hand-rolled with 20 grams of paste per cone. Shipping is calculated separately based on pack weight.
-            </p>
-          </div>
+        {/* Category Tabs */}
+        <div className="flex items-center justify-center flex-wrap gap-2 pt-2">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all ${
+                activeCategory === cat
+                  ? 'bg-forest text-ivory shadow-soft'
+                  : 'bg-white hover:bg-ivory border border-sand text-charcoal-light'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-            {BRAND.conePacks.map((pack) => (
-              <div
-                key={pack.id}
-                className={`bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-card transition-all flex flex-col justify-between border ${
-                  pack.popular ? 'border-henna/40 ring-2 ring-henna/15' : 'border-sand'
-                }`}
-              >
-                <div>
-                  <div className="relative">
-                    <HennaImage
-                      src={pack.image}
-                      alt={pack.name}
-                      aspectRatio="aspect-[4/3]"
-                    />
-                    {pack.popular && (
-                      <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-henna text-white text-xs font-semibold shadow-soft">
-                        Most Popular
-                      </span>
-                    )}
-                    {pack.badge && !pack.popular && (
-                      <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-forest text-white text-xs font-semibold shadow-soft">
-                        {pack.badge}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="p-6 sm:p-7 space-y-4">
-                    <div>
-                      <h3 className="font-serif text-2xl font-bold text-forest">
-                        {pack.name}
-                      </h3>
-                      <p className="text-xs text-charcoal-muted mt-0.5 font-medium">
-                        {pack.totalWeight} ({pack.coneCount} cones × 20g)
-                      </p>
-                    </div>
-
-                    {/* Separate Product Price and Shipping Breakdown */}
-                    <div className="p-4 rounded-2xl bg-sage-50/70 border border-sage-100 space-y-2 text-sm">
-                      <div className="flex justify-between items-baseline">
-                        <span className="text-charcoal font-medium">Product Price:</span>
-                        <span className="font-serif text-2xl font-bold text-forest">
-                          {pack.formattedProductPrice}
-                        </span>
-                      </div>
-                      <div className="flex justify-between text-xs text-charcoal-muted pt-1 border-t border-sage-200/60">
-                        <span>Courier Shipping:</span>
-                        <span className="font-semibold text-charcoal">
-                          {pack.hasFixedShipping ? pack.formattedShipping : 'To be confirmed on inquiry'}
-                        </span>
-                      </div>
-                      <div className="text-[11px] text-charcoal-muted italic pt-0.5">
-                        {pack.pricePerCone} · Shipping is additional
-                      </div>
-                    </div>
-
-                    <p className="text-sm text-charcoal-light leading-relaxed">
-                      {pack.description}
-                    </p>
-
-                    <div className="text-xs text-charcoal-muted pt-1 border-t border-sand/60">
-                      <strong>Best suited for:</strong> {pack.idealFor}
-                    </div>
-                  </div>
+        {/* 10 Retail Product Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
+          {filteredProducts.map((product) => (
+            <div
+              key={product.id}
+              className={`bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between border ${
+                product.popular ? 'border-henna/40 ring-2 ring-henna/15' : 'border-sand'
+              }`}
+            >
+              <div>
+                {/* Product Image */}
+                <div className="relative bg-ivory-dark/40 overflow-hidden">
+                  <HennaImage
+                    src={product.image}
+                    alt={product.name}
+                    aspectRatio="aspect-[4/3]"
+                    imgClassName="p-3 object-contain hover:scale-105 transition-transform duration-500"
+                  />
+                  {product.badge && (
+                    <span
+                      className={`absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase shadow-soft ${
+                        product.popular
+                          ? 'bg-henna text-white'
+                          : 'bg-forest text-ivory'
+                      }`}
+                    >
+                      {product.badge}
+                    </span>
+                  )}
                 </div>
 
-                <div className="p-6 sm:p-7 pt-0 space-y-2">
-                  <a
-                    href={getWhatsAppOrderUrl(pack)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-4 rounded-full bg-forest hover:bg-forest/90 text-ivory text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-soft"
-                  >
-                    <MessageCircle size={16} className="text-emerald-400" />
-                    <span>Enquire / Order on WhatsApp</span>
-                  </a>
-                  <p className="text-center text-[11px] text-charcoal-muted">
-                    Direct chat with brand coordinator
+                {/* Card Content */}
+                <div className="p-5 sm:p-6 space-y-3">
+                  <div className="space-y-1">
+                    <span className="text-[10px] uppercase tracking-wider font-semibold text-charcoal-muted block">
+                      {product.category}
+                    </span>
+                    <h3 className="font-serif text-xl font-bold text-forest leading-snug">
+                      {product.name}
+                    </h3>
+                  </div>
+
+                  {/* Price & Delivery Information Block */}
+                  <div className="p-3 rounded-2xl bg-sage-50/70 border border-sage-100 space-y-1.5 text-xs">
+                    <div className="flex justify-between items-baseline">
+                      <span className="text-charcoal-muted">Product Price:</span>
+                      <span className="font-serif text-2xl font-bold text-forest">
+                        {product.formattedPrice}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between items-center text-[11px] pt-1 border-t border-sage-200/60">
+                      <span className="flex items-center gap-1 text-charcoal-muted">
+                        <Truck size={12} className="text-henna" />
+                        <span>Delivery:</span>
+                      </span>
+                      <span
+                        className={`font-semibold ${
+                          product.isCone ? 'text-forest' : 'text-charcoal'
+                        }`}
+                      >
+                        {product.formattedDelivery}
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-charcoal-light leading-relaxed">
+                    {product.description}
                   </p>
                 </div>
               </div>
-            ))}
-          </div>
+
+              {/* Card WhatsApp Action Button */}
+              <div className="p-5 sm:p-6 pt-0 space-y-1.5">
+                <a
+                  href={getProductWhatsAppUrl(product)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 rounded-full bg-forest hover:bg-forest/90 text-ivory text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-soft"
+                >
+                  <MessageCircle size={15} className="text-emerald-400" />
+                  <span>Enquire on WhatsApp</span>
+                </a>
+                <p className="text-center text-[10px] text-charcoal-muted">
+                  Direct chat with KOSHVAR
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* SECTION 2: OTHER RETAIL PRODUCTS & BEAUTY SUPPLIES */}
-        <div className="space-y-6 pt-6">
-          <div className="border-b border-sand pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-            <div>
-              <span className="text-xs uppercase tracking-widest text-henna font-bold">
-                Complete Studio Range
-              </span>
-              <h2 className="font-serif text-3xl font-bold text-forest mt-0.5">
-                Henna Supplies & Accessories
-              </h2>
-            </div>
-            <p className="text-xs text-charcoal-muted">
-              Prices & specifications available upon WhatsApp inquiry
+        {/* Visual Showcase: Tasteful Mehndi Design & Application Photographs */}
+        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-sand space-y-6">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="text-xs uppercase tracking-widest text-henna font-bold">
+              Artisan Gallery
+            </span>
+            <h2 className="font-serif text-3xl font-bold text-forest">
+              Craft & Stain Results
+            </h2>
+            <p className="text-xs sm:text-sm text-charcoal-muted">
+              Real bridal applications, cone craft process, and natural dark stain outcomes achieved with KOSHVAR henna.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {BRAND.otherProducts.map((prod) => (
-              <div
-                key={prod.id}
-                className="bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-card transition-all border border-sand flex flex-col justify-between"
-              >
-                <div>
-                  <HennaImage
-                    src={prod.image}
-                    alt={prod.name}
-                    aspectRatio="aspect-[4/3]"
-                  />
-                  <div className="p-5 space-y-2">
-                    <span className="text-[10px] uppercase tracking-wider font-semibold text-henna block">
-                      {prod.category}
-                    </span>
-                    <h3 className="font-serif text-lg font-bold text-forest leading-snug">
-                      {prod.name}
-                    </h3>
-                    <p className="text-xs text-charcoal-muted leading-relaxed">
-                      {prod.description}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="p-5 pt-0 space-y-2">
-                  <div className="p-2.5 rounded-xl bg-ivory text-center text-xs font-medium text-forest border border-sand/80">
-                    {prod.priceStatus}
-                  </div>
-                  <a
-                    href={getOtherProductWhatsAppUrl(prod)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-2.5 rounded-full bg-forest hover:bg-forest/90 text-ivory text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-soft"
-                  >
-                    <MessageCircle size={14} className="text-emerald-400" />
-                    <span>Enquire on WhatsApp</span>
-                  </a>
-                </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="rounded-2xl overflow-hidden shadow-soft border border-sand">
+              <HennaImage
+                src="/assets/bride-mehndi.jpg"
+                alt="Bridal mehndi art"
+                aspectRatio="aspect-[4/3]"
+              />
+              <div className="p-3 bg-ivory text-center">
+                <p className="text-xs font-medium text-forest">Bridal Mehndi Application</p>
               </div>
-            ))}
+            </div>
+
+            <div className="rounded-2xl overflow-hidden shadow-soft border border-sand">
+              <HennaImage
+                src="/assets/after-colour-stain.jpg"
+                alt="After colour stain result"
+                aspectRatio="aspect-[4/3]"
+              />
+              <div className="p-3 bg-ivory text-center">
+                <p className="text-xs font-medium text-forest">Natural Dark Stain Peak</p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl overflow-hidden shadow-soft border border-sand">
+              <HennaImage
+                src="/assets/cone-process.png"
+                alt="Cone making process"
+                aspectRatio="aspect-[4/3]"
+              />
+              <div className="p-3 bg-ivory text-center">
+                <p className="text-xs font-medium text-forest">Hand-Rolled Precision Cone</p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl overflow-hidden shadow-soft border border-sand">
+              <HennaImage
+                src="/assets/cones-ready.png"
+                alt="Fresh cones ready for dispatch"
+                aspectRatio="aspect-[4/3]"
+              />
+              <div className="p-3 bg-ivory text-center">
+                <p className="text-xs font-medium text-forest">Fresh Dispatch from Basmath</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* WHOLESALE CALLOUT */}
+        {/* Wholesale Intermission */}
         <div className="p-8 sm:p-10 rounded-3xl bg-sage-50 border border-sage-200 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
             <span className="text-xs uppercase tracking-widest text-forest font-bold">
-              Bulk Orders & Studio Supply
+              Wholesale & Bulk Orders
             </span>
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
-              Wholesale Supply for Artists & Salons
+              Studio Batch Allocation for Artists & Salons
             </h3>
             <p className="text-sm text-charcoal-light max-w-xl">
-              We supply working bridal artists, mehndi academies, and beauty salons with fresh batch allocations. Connect directly with us to discuss quantities and schedules.
+              Are you an active bridal mehndi artist, academy, or salon? We provide scheduled fresh batch preparation and bulk supply.
             </p>
           </div>
 
@@ -226,12 +246,12 @@ export const Shop = () => {
             to="/wholesale"
             className="px-7 py-3.5 rounded-full bg-forest hover:bg-forest/90 text-ivory text-xs font-semibold uppercase tracking-wider transition-all flex items-center gap-2 shrink-0 shadow-soft"
           >
-            <span>Wholesale Desk & Form</span>
+            <span>Visit Wholesale Page</span>
             <ArrowRight size={14} />
           </Link>
         </div>
 
-        {/* STORAGE & HANDLING */}
+        {/* Storage & Care Instructions */}
         <div className="bg-white rounded-3xl p-8 sm:p-10 border border-sand space-y-6">
           <div className="flex items-center gap-3 border-b border-sand pb-4">
             <div className="w-10 h-10 rounded-full bg-sage-50 text-forest flex items-center justify-center">
@@ -239,7 +259,7 @@ export const Shop = () => {
             </div>
             <div>
               <h3 className="font-serif text-2xl font-bold text-forest">
-                Storage & Care Guide
+                Storage & Handling Instructions
               </h3>
               <p className="text-xs text-charcoal-muted">
                 How to preserve the staining power of your fresh cones

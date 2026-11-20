@@ -147,7 +147,7 @@ export const About = () => {
             </Link>
 
             <a
-              href={`https://wa.me/${BRAND.contact.whatsappNumber}?text=${encodeURIComponent(`Hello ${BRAND.name}, I would like to learn more about your natural henna cones and products.`)}`}
+              href={`https://wa.me/${BRAND.contact.whatsappNumber}?text=${encodeURIComponent(BRAND.contact.defaultEnquiryMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold uppercase tracking-wider transition-all flex items-center gap-2"

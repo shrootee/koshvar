@@ -9,7 +9,7 @@ export const Navbar = () => {
 
   const navLinks = [
     { label: 'Home', path: '/' },
-    { label: 'Products', path: '/products' },
+    { label: 'Retail Products', path: '/products' },
     { label: 'Wholesale', path: '/wholesale' },
     { label: 'About Us', path: '/about' },
     { label: 'Contact Us', path: '/contact' },
@@ -18,7 +18,7 @@ export const Navbar = () => {
   const isActive = (path) => location.pathname === path;
 
   const defaultWhatsAppUrl = `https://wa.me/${BRAND.contact.whatsappNumber}?text=${encodeURIComponent(
-    `Hello ${BRAND.name}, I would like to inquire about your natural henna cones and beauty supplies.`
+    BRAND.contact.defaultEnquiryMessage
   )}`;
 
   return (
@@ -44,7 +44,7 @@ export const Navbar = () => {
               rel="noopener noreferrer"
               className="text-henna hover:text-henna-dark font-medium transition-colors flex items-center gap-1"
             >
-              <span>WhatsApp Order & Enquiry</span>
+              <span>WhatsApp Enquiry</span>
               <ArrowUpRight size={13} strokeWidth={1.5} />
             </a>
           </div>
@@ -108,7 +108,7 @@ export const Navbar = () => {
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-forest hover:bg-forest/90 text-ivory text-xs font-semibold tracking-wide uppercase shadow-soft hover:shadow-card transition-all"
             >
               <MessageCircle size={16} strokeWidth={2} className="text-sage-200" />
-              <span>Order via WhatsApp</span>
+              <span>Enquire on WhatsApp</span>
             </a>
           </div>
 
@@ -164,7 +164,7 @@ export const Navbar = () => {
               className="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-forest text-ivory text-xs font-semibold uppercase tracking-wider shadow-soft"
             >
               <MessageCircle size={16} strokeWidth={2} />
-              <span>Order via WhatsApp</span>
+              <span>Enquire on WhatsApp</span>
             </a>
             <p className="text-center text-[11px] text-charcoal-muted pt-1">
               Operations: Pune · Dispatch: Basmath
