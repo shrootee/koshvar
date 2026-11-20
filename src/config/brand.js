@@ -259,6 +259,10 @@ export const BRAND = {
       url: "/assets/hero-mehndi.jpg",
       alt: "KOSHVAR Natural Henna Mehndi Application"
     },
+    bridalHands: {
+      url: "/assets/bride-mehndi.jpg",
+      alt: "Intricate bridal mehndi design on hands"
+    },
     brideMehndi: {
       url: "/assets/bride-mehndi.jpg",
       alt: "Intricate bridal mehndi design on hands"

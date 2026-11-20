@@ -50,8 +50,8 @@ export const About = () => {
           <div className="lg:col-span-6">
             <div className="rounded-3xl overflow-hidden shadow-card border-4 border-white">
               <HennaImage
-                src={BRAND.images.hero.url}
-                alt={BRAND.images.hero.alt}
+                src={BRAND.images?.hero?.url || "/assets/hero-mehndi.jpg"}
+                alt={BRAND.images?.hero?.alt || "KOSHVAR Henna Studio"}
                 aspectRatio="aspect-[4/3]"
               />
             </div>

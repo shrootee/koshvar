@@ -334,8 +334,8 @@ export const Wholesale = () => {
           <div className="lg:col-span-5 space-y-6">
             <div className="rounded-3xl overflow-hidden shadow-card border-4 border-white">
               <HennaImage
-                src={BRAND.images.bridalHands.url}
-                alt={BRAND.images.bridalHands.alt}
+                src={BRAND.images?.bridalHands?.url || BRAND.images?.brideMehndi?.url || "/assets/bride-mehndi.jpg"}
+                alt={BRAND.images?.bridalHands?.alt || BRAND.images?.brideMehndi?.alt || "KOSHVAR Bridal Mehndi Studio"}
                 aspectRatio="aspect-[4/3]"
               />
             </div>

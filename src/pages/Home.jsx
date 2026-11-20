@@ -87,8 +87,8 @@ export const Home = () => {
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 <div className="rounded-3xl overflow-hidden shadow-card border-4 border-white bg-ivory-dark">
                   <HennaImage
-                    src={BRAND.images.hero.url}
-                    alt={BRAND.images.hero.alt}
+                    src={BRAND.images?.hero?.url || "/assets/hero-mehndi.jpg"}
+                    alt={BRAND.images?.hero?.alt || "KOSHVAR Natural Henna"}
                     aspectRatio="aspect-[4/5]"
                     priority={true}
                   />
@@ -390,8 +390,8 @@ export const Home = () => {
             <div className="lg:col-span-5 order-2 lg:order-1">
               <div className="rounded-3xl overflow-hidden shadow-card border-4 border-white">
                 <HennaImage
-                  src={BRAND.images.stain.url}
-                  alt={BRAND.images.stain.alt}
+                  src={BRAND.images?.stain?.url || "/assets/stain-of-mehndi.jpg"}
+                  alt={BRAND.images?.stain?.alt || "KOSHVAR Henna Stain Result"}
                   aspectRatio="aspect-square"
                 />
               </div>
