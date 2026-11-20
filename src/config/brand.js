@@ -62,6 +62,43 @@ export const BRAND = {
     }
   ],
 
+  // Cone Packs (Convenience accessor for cone products)
+  conePacks: [
+    {
+      id: "pack-6",
+      name: "Mehndi Cones – Pack of 6",
+      price: 120,
+      formattedPrice: "₹120",
+      formattedProductPrice: "₹120",
+      totalWeight: "6 cones",
+      hasFixedShipping: true,
+      formattedShipping: "₹80 delivery",
+      formattedDelivery: "₹80 delivery"
+    },
+    {
+      id: "pack-12",
+      name: "Mehndi Cones – Pack of 12",
+      price: 120,
+      formattedPrice: "₹120",
+      formattedProductPrice: "₹120",
+      totalWeight: "12 cones",
+      hasFixedShipping: true,
+      formattedShipping: "₹80 delivery",
+      formattedDelivery: "₹80 delivery"
+    },
+    {
+      id: "pack-15",
+      name: "Mehndi Cones – Pack of 15",
+      price: 300,
+      formattedPrice: "₹300",
+      formattedProductPrice: "₹300",
+      totalWeight: "15 cones",
+      hasFixedShipping: true,
+      formattedShipping: "₹80 delivery",
+      formattedDelivery: "₹80 delivery"
+    }
+  ],
+
   // All 10 Retail Products with Real Project Photography
   retailProducts: [
     {

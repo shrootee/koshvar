@@ -51,10 +51,10 @@ export const Footer = () => {
           {/* Col 2: Retail Henna Packs */}
           <div className="space-y-4">
             <h3 className="font-serif text-lg font-bold text-forest">
-              Henna Cone Packs (20g Cones)
+              Henna Cone Packs
             </h3>
             <ul className="space-y-3 text-sm">
-              {BRAND.conePacks.map((pack) => (
+              {(BRAND.retailProducts ? BRAND.retailProducts.filter((p) => p.isCone) : (BRAND.conePacks || [])).map((pack) => (
                 <li key={pack.id} className="border-b border-sand/60 pb-2">
                   <Link
                     to="/products"
@@ -62,13 +62,11 @@ export const Footer = () => {
                   >
                     <div className="flex justify-between items-baseline font-medium">
                       <span>{pack.name}</span>
-                      <span className="text-forest font-semibold">{pack.formattedProductPrice}</span>
+                      <span className="text-forest font-semibold">{pack.formattedPrice || pack.formattedProductPrice}</span>
                     </div>
                     <div className="flex justify-between text-xs text-charcoal-muted mt-0.5">
-                      <span>{pack.totalWeight}</span>
-                      <span>
-                        Shipping: {pack.hasFixedShipping ? pack.formattedShipping : 'On inquiry'}
-                      </span>
+                      <span>{pack.formattedDelivery || '₹80 delivery'}</span>
+                      <span className="text-henna font-medium">Enquire →</span>
                     </div>
                   </Link>
                 </li>
