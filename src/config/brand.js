@@ -158,7 +158,7 @@ export const BRAND = {
       isCone: false,
       popular: true,
       badge: "Complete Set",
-      image: "/assets/biginner kit",
+      image: "/assets/beginner-kit.png",
       description: "Comprehensive artist kit with essential supplies for practicing, mixing, and creating fine mehndi art."
     },
     {
