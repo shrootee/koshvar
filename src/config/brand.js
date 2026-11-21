@@ -18,7 +18,7 @@ export const BRAND = {
   transparentLogo: "/assets/tranperentlogo.png",
   tagline: "A Better Kind of Beautiful.",
   shortIntro: "Independent brand crafting natural henna and beauty supplies. Henna paste formulated with 7-times-filtered henna powder and zero added chemicals in the cone tip.",
-  
+
   operations: {
     management: "Pune, Maharashtra, India",
     manufacturing: "Basmath, Maharashtra, India",
@@ -158,7 +158,7 @@ export const BRAND = {
       isCone: false,
       popular: true,
       badge: "Complete Set",
-      image: "/assets/combo-kit.png",
+      image: "/assets/biginner kit",
       description: "Comprehensive artist kit with essential supplies for practicing, mixing, and creating fine mehndi art."
     },
     {
